@@ -11,4 +11,4 @@ void init(Pilha *p);
 int empty(Pilha *p);
 int pop(Pilha *p);
 int push(Pilha *p, char elemento);
-int ifWin(Pilha *p, char *s, char *last, int *winners);
+int ifWin(Pilha *p, char s[], char last[], int *winners);

@@ -30,14 +30,13 @@ int push(Pilha *p, char elemento){
     return 1;
 }
 
-int ifWin(Pilha *p, char *s, char *last, int *winners){
+int ifWin(Pilha *p, char s[], char last[], int *winners){
     int i, count = 0;
     char inverso[20];
 
     for(i = strlen(last) - 1; i >= 0; i--){
         inverso[count] = last[i];
         count++;
-        continue;
     }
 
         if(strcmp(inverso, s) == 0){
