@@ -1,16 +1,21 @@
 #include "ex08.h"
 
-void init(Pilha *p){
+Pilha * init()
+{
+    Pilha *p = (Pilha*)malloc(sizeof(Pilha));
     p->topo = NULL;
+    return p;
 }
 
-int empty(Pilha *p){
+int empty(Pilha *p)
+{
     if(p->topo == NULL)
         return 1;
     return 0;
 }
 
-int pop(Pilha *p){
+int pop(Pilha *p)
+{
     if(empty(p))
         return 0;
     Elemento *e = p->topo;
@@ -20,7 +25,8 @@ int pop(Pilha *p){
     return 1;
 }
 
-int push(Pilha *p, char elemento){
+int push(Pilha *p, char elemento)
+{
     Elemento *e = (Elemento*)malloc(sizeof(Elemento));
     if(e == NULL)
         return 0;
@@ -30,22 +36,33 @@ int push(Pilha *p, char elemento){
     return 1;
 }
 
-int ifWin(Pilha *p, char s[], char last[], int *winners){
+int ifWin(Pilha *p, char s[], char last[], int *winners)
+{
     int i, count = 0;
-    char inverso[20];
 
-    for(i = strlen(last) - 1; i >= 0; i--){
-        inverso[count] = last[i];
-        count++;
+    Elemento *e = p->topo;
+    for(i = 0; i < 4; i++)
+    {
+        if(e->elemento == s[i])
+        {
+            count++;
+        }
+        e = e->next;
+    }
+    if(count == 4)
+    {
+        *winners += 1;
+        for(i = 0; i < 4; i++)
+        {
+            pop(p);
+        }
+    }
+   else
+    {
+        for(i = 0; i < 4; i++)
+        {
+            push(p,s[i]);
+        }
     }
 
-        if(strcmp(inverso, s) == 0){
-            *winners += 1;
-            for(i = 0; last[i] != '\0'; i++)
-                pop(p);
-            }else{
-                for(i = 0; s[i] != '\0'; i++)
-                    push(p, s[i]);
-                strcpy(last, s);
-            }
 }

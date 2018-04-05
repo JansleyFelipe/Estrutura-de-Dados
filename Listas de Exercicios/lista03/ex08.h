@@ -7,7 +7,7 @@ typedef struct tipoPilha{
     Elemento *topo;
 }Pilha;
 
-void init(Pilha *p);
+Pilha * init();
 int empty(Pilha *p);
 int pop(Pilha *p);
 int push(Pilha *p, char elemento);
